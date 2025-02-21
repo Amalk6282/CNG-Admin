@@ -1,8 +1,8 @@
-import 'package:cng_admin/widgets/reportcard.dart';
+import 'package:cng_admin/features/feedback/feedbackcard.dart';
 import 'package:flutter/material.dart';
 
-class ReportsPage extends StatelessWidget {
-  const ReportsPage({super.key});
+class Feedbackpage extends StatelessWidget {
+  const Feedbackpage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ReportsPage extends StatelessWidget {
                 height: 30,
               ),
               Text(
-                'Reports',
+                'Feedback',
                 style: TextStyle(fontSize: 35.0, color: Color(0xFF00A36C)),
               ),
               SizedBox(
@@ -30,7 +30,7 @@ class ReportsPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 45,
+                width: 34,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -53,7 +53,7 @@ class ReportsPage extends StatelessWidget {
           Expanded(
             child: ListView.separated(
                 shrinkWrap: true,
-                itemBuilder: (context, index) => Reportcard(),
+                itemBuilder: (context, index) => Feedbackcard(),
                 separatorBuilder: (context, index) => SizedBox(
                       height: 20,
                     ),

@@ -1,4 +1,4 @@
-import 'package:cng_admin/widgets/detailscard.dart';
+import 'package:cng_admin/common_widget/custom_alert_dialog.dart';
 import 'package:flutter/material.dart';
 
 class Reportcard extends StatelessWidget {
@@ -32,10 +32,12 @@ class Reportcard extends StatelessWidget {
                   Spacer(),
                   ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Detailscard()),
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomAlertDialog(
+                            title: 'Details',
+                            content: SizedBox(),
+                          ),
                         );
                       },
                       style: ElevatedButton.styleFrom(

@@ -1,4 +1,4 @@
-import 'package:cng_admin/widgets/filling_station_card.dart';
+import 'package:cng_admin/features/filling_station/filling_station_card.dart';
 import 'package:flutter/material.dart';
 
 class FillingStaion extends StatelessWidget {

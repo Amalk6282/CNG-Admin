@@ -1,10 +1,9 @@
-import 'package:cng_admin/feedbackpage.dart';
-import 'package:cng_admin/login_page.dart';
-import 'package:cng_admin/screens/dashboard.dart';
-import 'package:cng_admin/screens/filling_staion.dart';
-import 'package:cng_admin/screens/reports_page.dart';
-import 'package:cng_admin/screens/users.dart';
-import 'package:cng_admin/widgets/custombutton.dart';
+import 'package:cng_admin/features/feedback/feedbackpage.dart';
+import 'package:cng_admin/features/login/login_page.dart';
+import 'package:cng_admin/features/dashboard/dashboard.dart';
+import 'package:cng_admin/features/filling_station/filling_staion.dart';
+import 'package:cng_admin/features/report/reports_page.dart';
+import 'package:cng_admin/features/users/users.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
                   style: TextStyle(fontSize: 25, color: Color(0xFF00A36C)),
                 ),
                 SizedBox(height: 80.0),
-                CustomButton(
+                DrawerItemButton(
                   inverse: _tabController.index == 0,
                   iconData: Icons.dashboard,
                   label: 'Dashboard',
@@ -53,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
                     setState(() {});
                   },
                 ),
-                CustomButton(
+                DrawerItemButton(
                   inverse: _tabController.index == 1,
                   iconData: Icons.local_gas_station,
                   label: 'Filling Station',
@@ -62,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen>
                     setState(() {});
                   },
                 ),
-                CustomButton(
+                DrawerItemButton(
                   inverse: _tabController.index == 2,
                   iconData: Icons.supervised_user_circle_sharp,
                   label: 'Users',
@@ -71,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen>
                     setState(() {});
                   },
                 ),
-                CustomButton(
+                DrawerItemButton(
                   inverse: _tabController.index == 3,
                   iconData: Icons.money,
                   label: 'Revenue',
@@ -80,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen>
                     setState(() {});
                   },
                 ),
-                CustomButton(
+                DrawerItemButton(
                   inverse: _tabController.index == 4,
                   iconData: Icons.report,
                   label: 'Report',
@@ -89,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen>
                     setState(() {});
                   },
                 ),
-                CustomButton(
+                DrawerItemButton(
                   inverse: _tabController.index == 5,
                   iconData: Icons.feedback,
                   label: 'Feedback',
@@ -99,12 +98,12 @@ class _HomeScreenState extends State<HomeScreen>
                   },
                 ),
                 Spacer(),
-                CustomButton(
+                DrawerItemButton(
                   inverse: false,
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
                   iconData: Icons.logout,
@@ -133,6 +132,49 @@ class _HomeScreenState extends State<HomeScreen>
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class DrawerItemButton extends StatelessWidget {
+  final Function() onTap;
+  final bool inverse;
+  final IconData iconData;
+  final String label;
+  const DrawerItemButton({
+    super.key,
+    required this.onTap,
+    this.inverse = true,
+    required this.iconData,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: inverse ? Color(0xFFE7EEE7) : Colors.white,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Row(
+            children: [
+              Icon(
+                iconData,
+                color: inverse ? Color(0xFF00A36C) : Colors.black,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                label,
+                style: TextStyle(
+                    color: inverse ? Color(0xFF00A36C) : Colors.black),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

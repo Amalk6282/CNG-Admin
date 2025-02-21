@@ -1,5 +1,5 @@
-import 'package:cng_admin/home_screen.dart';
-import 'package:cng_admin/login_page.dart';
+import 'package:cng_admin/features/login/login_page.dart';
+import 'package:cng_admin/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Admin Login',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(),
+      theme: appTheme,
+      home: const LoginScreen(),
     );
   }
 }
