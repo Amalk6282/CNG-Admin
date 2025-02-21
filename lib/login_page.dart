@@ -1,3 +1,4 @@
+import 'package:cng_admin/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -71,7 +72,13 @@ class _LoginPageState extends State<LoginPage> {
                     height: 30.0,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size(250.0, 50.0),
                         backgroundColor: const Color(0xFF00A36C)),

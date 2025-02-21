@@ -1,5 +1,8 @@
+import 'package:cng_admin/feedbackpage.dart';
+import 'package:cng_admin/login_page.dart';
 import 'package:cng_admin/screens/dashboard.dart';
 import 'package:cng_admin/screens/filling_staion.dart';
+import 'package:cng_admin/screens/reports_page.dart';
 import 'package:cng_admin/screens/users.dart';
 import 'package:cng_admin/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +101,12 @@ class _HomeScreenState extends State<HomeScreen>
                 Spacer(),
                 CustomButton(
                   inverse: false,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
                   iconData: Icons.logout,
                   label: "Log out",
                 ),
@@ -110,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           Expanded(
             child: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: [
                 Dashboard(),
@@ -118,12 +127,8 @@ class _HomeScreenState extends State<HomeScreen>
                 Container(
                   color: Colors.yellow,
                 ),
-                Container(
-                  color: Colors.orange,
-                ),
-                Container(
-                  color: Colors.brown,
-                ),
+                ReportsPage(),
+                Feedbackpage()
               ],
             ),
           ),
