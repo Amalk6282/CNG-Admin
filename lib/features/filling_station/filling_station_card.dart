@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 
 class FillingStationCard extends StatelessWidget {
   final String url, station;
+  final Function() onManage, onEdit, onDelete;
   const FillingStationCard(
-      {super.key, required this.url, required this.station});
+      {super.key,
+      required this.url,
+      required this.station,
+      required this.onManage,
+      required this.onEdit,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230,
       width: 286,
       color: Colors.white,
       child: Column(
@@ -24,17 +29,47 @@ class FillingStationCard extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Text(
-            station,
-            style: TextStyle(fontSize: 18),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                Text(
+                  station,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: onEdit,
+                      child: Text(
+                        'Edit',
+                        style: TextStyle(fontSize: 15, color: Colors.blue),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    TextButton(
+                      onPressed: onDelete,
+                      child: Text(
+                        'Delete',
+                        style: TextStyle(fontSize: 15, color: Colors.red),
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: onManage,
+                        child: Text(
+                          'Manage',
+                          style:
+                              TextStyle(fontSize: 15, color: Color(0xFF00A36C)),
+                        ))
+                  ],
+                ),
+              ],
+            ),
           ),
-          TextButton(
-              onPressed: () {},
-              child: Text(
-                'Manage',
-                style: TextStyle(fontSize: 15, color: Color(0xFF00A36C)),
-              ))
         ],
       ),
     );

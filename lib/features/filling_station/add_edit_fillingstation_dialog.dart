@@ -2,10 +2,15 @@ import 'package:cng_admin/common_widget/custom_alert_dialog.dart';
 import 'package:cng_admin/common_widget/custom_image_picker_button.dart';
 import 'package:cng_admin/common_widget/custom_text_formfield.dart';
 import 'package:cng_admin/util/value_validator.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'filling_station_bloc/filling_stations_bloc.dart';
 
 class AddEditFillingstationDialog extends StatefulWidget {
-  const AddEditFillingstationDialog({super.key});
+  final Map? fillingstationDetails;
+  const AddEditFillingstationDialog({super.key, this.fillingstationDetails});
 
   @override
   State<AddEditFillingstationDialog> createState() =>
@@ -22,103 +27,186 @@ class _AddEditFillingstationDialogState
   final TextEditingController _districtController = TextEditingController();
   final TextEditingController _placeController = TextEditingController();
   final TextEditingController _pincodeController = TextEditingController();
+  final TextEditingController _addressLineController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  PlatformFile? coverImage;
+
+  @override
+  void initState() {
+    if (widget.fillingstationDetails != null) {
+      _nameController.text = widget.fillingstationDetails!['name'];
+      _phonenoController.text = widget.fillingstationDetails!['phone'];
+      _stateController.text = widget.fillingstationDetails!['state'];
+      _districtController.text = widget.fillingstationDetails!['district'];
+      _placeController.text = widget.fillingstationDetails!['place'];
+      _pincodeController.text = widget.fillingstationDetails!['pincode'];
+      _addressLineController.text =
+          widget.fillingstationDetails!['address_line'];
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return CustomAlertDialog(
-      title: 'Add Filling Station',
-      content: Flexible(
-          child: ListView(
-        shrinkWrap: true,
-        children: [
-          CustomImagePickerButton(
-            onPick: (pick) {},
-            width: double.infinity,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          //TODO:loading
-          CustomTextFormField(
-            labelText: 'Email',
-            controller: _emailController,
-            validator: emailValidator,
-            isLoading: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          CustomTextFormField(
-            labelText: 'Password',
-            controller: _passwordController,
-            validator: passwordValidator,
-            isLoading: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          CustomTextFormField(
-            labelText: 'Name',
-            controller: _nameController,
-            validator: alphabeticWithSpaceValidator,
-            isLoading: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          CustomTextFormField(
-            labelText: 'Phone No.',
-            controller: _phonenoController,
-            validator: phoneNumberValidator,
-            isLoading: false,
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Text(
-            'Address:',
-            style: TextStyle(fontSize: 22),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          CustomTextFormField(
-            labelText: 'State',
-            controller: _stateController,
-            validator: alphabeticWithSpaceValidator,
-            isLoading: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          CustomTextFormField(
-            labelText: 'District',
-            controller: _districtController,
-            validator: alphabeticWithSpaceValidator,
-            isLoading: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          CustomTextFormField(
-            labelText: 'Place',
-            controller: _placeController,
-            validator: alphabeticWithSpaceValidator,
-            isLoading: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          CustomTextFormField(
-            labelText: 'PIN CODE',
-            controller: _pincodeController,
-            validator: pincodeValidator,
-            isLoading: false,
-          )
-        ],
-      )),
-      primaryButton: 'Submit',
-      onPrimaryPressed: () {},
+    return BlocConsumer<FillingStationsBloc, FillingStationsState>(
+      listener: (context, state) {
+        if (state is FillingStationsSuccessState) {
+          Navigator.pop(context);
+        }
+      },
+      builder: (context, state) {
+        return CustomAlertDialog(
+          isLoading: state is FillingStationsLoadingState,
+          title: 'Add Filling Station',
+          content: Flexible(
+              child: Form(
+            key: _formKey,
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                CustomImagePickerButton(
+                  selectedImage: widget.fillingstationDetails?['image_url'],
+                  onPick: (pick) {
+                    coverImage = pick;
+                    setState(() {});
+                  },
+                  width: double.infinity,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                if (widget.fillingstationDetails == null)
+                  CustomTextFormField(
+                    labelText: 'Email',
+                    controller: _emailController,
+                    validator: emailValidator,
+                    isLoading: state is FillingStationsLoadingState,
+                  ),
+                if (widget.fillingstationDetails == null)
+                  SizedBox(
+                    height: 10,
+                  ),
+                if (widget.fillingstationDetails == null)
+                  CustomTextFormField(
+                    labelText: 'Password',
+                    controller: _passwordController,
+                    validator: passwordValidator,
+                    isLoading: state is FillingStationsLoadingState,
+                  ),
+                if (widget.fillingstationDetails == null)
+                  SizedBox(
+                    height: 10,
+                  ),
+                CustomTextFormField(
+                  labelText: 'Name',
+                  controller: _nameController,
+                  validator: alphabeticWithSpaceValidator,
+                  isLoading: state is FillingStationsLoadingState,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                CustomTextFormField(
+                  labelText: 'Phone No.',
+                  controller: _phonenoController,
+                  validator: phoneNumberValidator,
+                  isLoading: state is FillingStationsLoadingState,
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  'Address:',
+                  style: TextStyle(fontSize: 22),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                CustomTextFormField(
+                  labelText: 'State',
+                  controller: _stateController,
+                  validator: alphabeticWithSpaceValidator,
+                  isLoading: state is FillingStationsLoadingState,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                CustomTextFormField(
+                  labelText: 'District',
+                  controller: _districtController,
+                  validator: alphabeticWithSpaceValidator,
+                  isLoading: state is FillingStationsLoadingState,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                CustomTextFormField(
+                  labelText: 'Place',
+                  controller: _placeController,
+                  validator: alphabeticWithSpaceValidator,
+                  isLoading: state is FillingStationsLoadingState,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                CustomTextFormField(
+                  labelText: 'PIN CODE',
+                  controller: _pincodeController,
+                  validator: pincodeValidator,
+                  isLoading: state is FillingStationsLoadingState,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                CustomTextFormField(
+                  labelText: 'Address Line',
+                  controller: _addressLineController,
+                  validator: notEmptyValidator,
+                  isLoading: state is FillingStationsLoadingState,
+                ),
+              ],
+            ),
+          )),
+          primaryButton: 'Submit',
+          onPrimaryPressed: () {
+            if (_formKey.currentState!.validate() &&
+                ((coverImage != null) ||
+                    widget.fillingstationDetails != null)) {
+              Map<String, dynamic> details = {
+                'name': _nameController.text,
+                'email': _emailController.text,
+                'phone': _phonenoController.text,
+                'state': _stateController.text,
+                'district': _districtController.text,
+                'place': _placeController.text,
+                'pincode': _pincodeController.text,
+                'address_line': _addressLineController.text,
+              };
+
+              if (coverImage != null) {
+                details['image'] = coverImage!.bytes;
+                details['image_name'] = coverImage!.name;
+              }
+
+              if (widget.fillingstationDetails != null) {
+                BlocProvider.of<FillingStationsBloc>(context).add(
+                  EditFillingStationEvent(
+                    fillingstationId: widget.fillingstationDetails!['id'],
+                    fillingstationDetails: details,
+                  ),
+                );
+              } else {
+                BlocProvider.of<FillingStationsBloc>(context).add(
+                  AddFillingStationEvent(
+                    fillingstationDetails: details,
+                  ),
+                );
+              }
+            }
+          },
+        );
+      },
     );
   }
 }
