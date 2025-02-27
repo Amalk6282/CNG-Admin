@@ -55,7 +55,7 @@ class CustomTextFormField extends StatelessWidget {
                       ? null
                       : const EdgeInsets.symmetric(
                           horizontal: 10,
-                          vertical: 15,
+                          vertical: 8,
                         )),
               hintText: labelText,
               suffixIcon: suffixIconData != null

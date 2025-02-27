@@ -1,3 +1,4 @@
+import 'package:cng_admin/features/home_screen.dart';
 import 'package:cng_admin/features/login/login_page.dart';
 import 'package:cng_admin/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Admin Login',
       theme: appTheme,
-      home: const LoginScreen(),
+      home: LoginPage(),
     );
   }
 }

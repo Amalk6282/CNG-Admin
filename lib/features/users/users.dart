@@ -1,3 +1,4 @@
+import 'package:cng_admin/common_widget/custom_search.dart';
 import 'package:flutter/material.dart';
 
 class Users extends StatelessWidget {
@@ -29,17 +30,9 @@ class UserTable extends StatelessWidget {
                 'Users',
                 style: TextStyle(fontSize: 35.0, color: Color(0xFF00A36C)),
               ),
+              Spacer(),
               SizedBox(
-                width: 450,
-              ),
-              SizedBox(
-                width: 400,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)))),
-                ),
-              ),
+                  width: 400, child: CustomSearch(onSearch: (onSearch) {})),
               SizedBox(
                 width: 45,
               ),

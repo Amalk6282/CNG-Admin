@@ -11,7 +11,7 @@ void checkLogin(BuildContext context) {
     if (!(currentUser != null && currentUser.appMetadata['role'] == 'admin')) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const LoginPage(),
         ),
       );
     }

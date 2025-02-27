@@ -4,6 +4,7 @@ import 'package:cng_admin/features/dashboard/dashboard.dart';
 import 'package:cng_admin/features/filling_station/filling_staion.dart';
 import 'package:cng_admin/features/report/reports_page.dart';
 import 'package:cng_admin/features/users/users.dart';
+import 'package:cng_admin/filling_station_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void initState() {
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(length: 6, vsync: this, initialIndex: 1);
     super.initState();
   }
 
@@ -103,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen>
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   iconData: Icons.logout,
@@ -120,8 +121,8 @@ class _HomeScreenState extends State<HomeScreen>
               physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: [
-                Dashboard(),
-                FillingStaion(),
+                ModernDashboard(),
+                FillingStationsScreen(),
                 Users(),
                 Container(
                   color: Colors.yellow,

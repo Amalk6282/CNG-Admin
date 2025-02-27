@@ -10,11 +10,11 @@ class CustomImagePickerButton extends StatefulWidget {
   const CustomImagePickerButton({
     super.key,
     required this.onPick,
-    this.height = 100,
+    this.height = 150,
     this.width = 100,
     this.selectedImage,
     this.showRequiredError = false,
-    this.borderRadius = 50,
+    this.borderRadius = 12,
   });
 
   @override

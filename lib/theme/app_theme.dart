@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-const Color backgroundColor = Color(0xFFB5C2C9);
+const Color backgroundColor = Color.fromARGB(255, 255, 255, 255);
 const Color titleColor = Color(0xFF353535);
 const Color textColor = Color(0xFF353535);
 const Color mutedIconColor = Color(0xFFA1A1A1);
 const Color mutedTextColor = Color(0xFF919191);
 const Color inputBackgroundColor = Color(0xFFF1F1F1);
-const Color cardBackgroundColor = Color(0xFFF0F0F0);
+const Color cardBackgroundColor = Color.fromRGBO(255, 255, 255, 1);
 const Color cardBorderColor = Color(0xFFD8D8D8);
 const Color cardFocusBorderColor = Color.fromARGB(255, 203, 203, 203);
 const Color iconColor = Color(0xFF515866);
@@ -99,46 +99,10 @@ ThemeData appTheme = ThemeData(
     prefixIconColor: iconColor,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     contentPadding: const EdgeInsets.symmetric(
-      horizontal: 18,
-      vertical: 15,
+      horizontal: 10,
+      vertical: 8,
     ),
     fillColor: cardBackgroundColor,
     filled: true,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: const BorderSide(
-        color: cardBorderColor,
-      ),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: const BorderSide(
-        color: cardBorderColor,
-      ),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: const BorderSide(
-        color: cardFocusBorderColor,
-      ),
-    ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: BorderSide(
-        color: Colors.red[700]!,
-      ),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: const BorderSide(
-        color: cardBorderColor,
-      ),
-    ),
-    disabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(32),
-      borderSide: const BorderSide(
-        color: cardBorderColor,
-      ),
-    ),
   ),
 );

@@ -1,3 +1,5 @@
+import 'package:cng_admin/common_widget/custom_search.dart';
+import 'package:cng_admin/features/filling_station/add_edit_fillingstation_dialog.dart';
 import 'package:cng_admin/features/filling_station/filling_station_card.dart';
 import 'package:flutter/material.dart';
 
@@ -25,19 +27,16 @@ class FillingStaion extends StatelessWidget {
                   width: 450,
                 ),
                 SizedBox(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15)))),
-                  ),
-                ),
+                    width: 300, child: CustomSearch(onSearch: (search) {})),
                 SizedBox(
                   width: 5,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AddEditFillingstationDialog());
+                  },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15))),
