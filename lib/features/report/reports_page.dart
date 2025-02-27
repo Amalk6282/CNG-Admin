@@ -1,28 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-void main() {
-  runApp(const ReportsPage());
-}
-
-class ReportsPage extends StatelessWidget {
-  const ReportsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CNG Fuel Admin Panel',
-      theme: ThemeData(
-        primaryColor: Colors.green,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
-      home: const ReportsScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
 class Report {
   final String id;
   final String title;
@@ -95,7 +73,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0),
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 60),
             child: Text(
               'Reports',
               style: TextStyle(

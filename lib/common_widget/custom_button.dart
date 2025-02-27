@@ -33,7 +33,6 @@ class _CustomButtonState extends State<CustomButton> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 100),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).colorScheme.shadow,
@@ -55,7 +54,6 @@ class _CustomButtonState extends State<CustomButton> {
               ),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(8),
         onTap: widget.onPressed,
         autofocus: widget.inverse,
         onHover: (value) {

@@ -6,121 +6,118 @@ class ModernDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Dashboard',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF0C9D80),
-                ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 40, right: 40, top: 60),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Dashboard',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF0C9D80),
               ),
-              const SizedBox(height: 24),
+            ),
+            const SizedBox(height: 24),
 
-              // Stats Cards
-              GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 4,
-                crossAxisSpacing: 16,
-                children: [
-                  _buildStatCard(
-                    'Filling Stations',
-                    '40',
-                    Icons.local_gas_station,
-                  ),
-                  _buildStatCard(
-                    'Total Users',
-                    '3330',
-                    Icons.people,
-                  ),
-                  _buildStatCard(
-                    'Current Reports',
-                    '20',
-                    Icons.description,
-                  ),
-                  _buildStatCard(
-                    'Feedbacks',
-                    '270',
-                    Icons.feedback,
+            // Stats Cards
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 4,
+              crossAxisSpacing: 16,
+              children: [
+                _buildStatCard(
+                  'Filling Stations',
+                  '40',
+                  Icons.local_gas_station,
+                ),
+                _buildStatCard(
+                  'Total Users',
+                  '3330',
+                  Icons.people,
+                ),
+                _buildStatCard(
+                  'Current Reports',
+                  '20',
+                  Icons.description,
+                ),
+                _buildStatCard(
+                  'Feedbacks',
+                  '270',
+                  Icons.feedback,
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 32),
+
+            // Revenue Chart Section
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.04),
+                    blurRadius: 12,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
-
-              const SizedBox(height: 32),
-
-              // Revenue Chart Section
-              Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.04),
-                      blurRadius: 12,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 4),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Revenue',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF0C9D80),
                     ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Revenue',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF0C9D80),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    // SizedBox(
-                    //   height: 300,
-                    //   child: BarChart(
-                    //     BarChartData(
-                    //       barGroups: _getBarGroups(),
-                    //       borderData: FlBorderData(show: false),
-                    //       gridData: const FlGridData(show: false),
-                    //       titlesData: FlTitlesData(
-                    //         leftTitles: const AxisTitles(
-                    //           sideTitles: SideTitles(showTitles: false),
-                    //         ),
-                    //         rightTitles: const AxisTitles(
-                    //           sideTitles: SideTitles(showTitles: false),
-                    //         ),
-                    //         topTitles: const AxisTitles(
-                    //           sideTitles: SideTitles(showTitles: false),
-                    //         ),
-                    //         bottomTitles: AxisTitles(
-                    //           sideTitles: SideTitles(
-                    //             showTitles: true,
-                    //             getTitlesWidget: (value, meta) {
-                    //               return Text(
-                    //                 'M${value.toInt() + 1}',
-                    //                 style: const TextStyle(
-                    //                   color: Colors.grey,
-                    //                   fontSize: 12,
-                    //                 ),
-                    //               );
-                    //             },
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 24),
+                  // SizedBox(
+                  //   height: 300,
+                  //   child: BarChart(
+                  //     BarChartData(
+                  //       barGroups: _getBarGroups(),
+                  //       borderData: FlBorderData(show: false),
+                  //       gridData: const FlGridData(show: false),
+                  //       titlesData: FlTitlesData(
+                  //         leftTitles: const AxisTitles(
+                  //           sideTitles: SideTitles(showTitles: false),
+                  //         ),
+                  //         rightTitles: const AxisTitles(
+                  //           sideTitles: SideTitles(showTitles: false),
+                  //         ),
+                  //         topTitles: const AxisTitles(
+                  //           sideTitles: SideTitles(showTitles: false),
+                  //         ),
+                  //         bottomTitles: AxisTitles(
+                  //           sideTitles: SideTitles(
+                  //             showTitles: true,
+                  //             getTitlesWidget: (value, meta) {
+                  //               return Text(
+                  //                 'M${value.toInt() + 1}',
+                  //                 style: const TextStyle(
+                  //                   color: Colors.grey,
+                  //                   fontSize: 12,
+                  //                 ),
+                  //               );
+                  //             },
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -113,7 +113,7 @@ class _FeedbackpageState extends State<Feedbackpage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0),
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 60),
             child: Text(
               'Feedback',
               style: TextStyle(

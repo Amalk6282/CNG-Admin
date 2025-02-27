@@ -9,8 +9,8 @@ class FillingStationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 230,
-      width: 250,
-      color: Color(0xFFE7EEE7),
+      width: 286,
+      color: Colors.white,
       child: Column(
         children: [
           Image(
@@ -18,7 +18,7 @@ class FillingStationCard extends StatelessWidget {
               url,
             ),
             height: 150,
-            width: 250,
+            width: double.infinity,
             fit: BoxFit.cover,
           ),
           SizedBox(
