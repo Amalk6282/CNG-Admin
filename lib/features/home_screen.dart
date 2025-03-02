@@ -44,10 +44,13 @@ class _HomeScreenState extends State<HomeScreen>
                       SizedBox(
                         height: 60.0,
                       ),
-                      Text(
-                        'CNGify',
-                        style:
-                            TextStyle(fontSize: 25, color: Color(0xFF00A36C)),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'CNGify',
+                          style:
+                              TextStyle(fontSize: 25, color: Color(0xFF00A36C)),
+                        ),
                       ),
                       SizedBox(height: 80.0),
                       DrawerItemButton(
