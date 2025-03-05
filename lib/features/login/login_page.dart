@@ -132,6 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                               TextFormField(
                                 controller: _passwordController,
                                 obscureText: isObscure,
+                                validator: notEmptyValidator,
                                 decoration: InputDecoration(
                                   suffixIcon: IconButton(
                                     onPressed: () {
@@ -147,19 +148,19 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               SizedBox(height: 12),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Forgot password?',
-                                    style: TextStyle(
-                                      color: Color(0xFF00A67E),
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // Align(
+                              //   alignment: Alignment.centerRight,
+                              //   child: TextButton(
+                              //     onPressed: () {},
+                              //     child: Text(
+                              //       'Forgot password?',
+                              //       style: TextStyle(
+                              //         color: Color(0xFF00A67E),
+                              //         fontSize: 14,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                               SizedBox(height: 30),
                               CustomButton(
                                 inverse: true,
