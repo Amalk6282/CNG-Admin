@@ -4,7 +4,7 @@ import 'package:cng_admin/features/login/login_page.dart';
 import 'package:cng_admin/features/dashboard/dashboard.dart';
 import 'package:cng_admin/features/filling_station/filling_staion.dart';
 import 'package:cng_admin/features/report/reports_page.dart';
-import 'package:cng_admin/features/users/users.dart';
+import 'package:cng_admin/features/users/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -77,10 +77,19 @@ class _HomeScreenState extends State<HomeScreen>
                           setState(() {});
                         },
                       ),
+                      // DrawerItemButton(
+                      //   inverse: _tabController.index == 3,
+                      //   iconData: Icons.money,
+                      //   label: 'Revenue',
+                      //   onTap: () {
+                      //     _tabController.animateTo(3);
+                      //     setState(() {});
+                      //   },
+                      // ),
                       DrawerItemButton(
                         inverse: _tabController.index == 3,
-                        iconData: Icons.money,
-                        label: 'Revenue',
+                        iconData: Icons.report,
+                        label: 'Report',
                         onTap: () {
                           _tabController.animateTo(3);
                           setState(() {});
@@ -88,19 +97,10 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                       DrawerItemButton(
                         inverse: _tabController.index == 4,
-                        iconData: Icons.report,
-                        label: 'Report',
-                        onTap: () {
-                          _tabController.animateTo(4);
-                          setState(() {});
-                        },
-                      ),
-                      DrawerItemButton(
-                        inverse: _tabController.index == 5,
                         iconData: Icons.feedback,
                         label: 'Feedback',
                         onTap: () {
-                          _tabController.animateTo(5);
+                          _tabController.animateTo(4);
                           setState(() {});
                         },
                       ),
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen>
               children: [
                 ModernDashboard(),
                 FillingStaion(),
-                Users(),
+                UserManagementSection(),
                 Container(
                   color: Colors.yellow,
                 ),

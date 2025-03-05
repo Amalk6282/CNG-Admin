@@ -5,7 +5,10 @@ import 'package:cng_admin/util/value_validator.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../common_widget/custom_button.dart';
+import '../../common_widget/custom_map.dart';
 import 'filling_station_bloc/filling_stations_bloc.dart';
 
 class AddEditFillingstationDialog extends StatefulWidget {
@@ -31,6 +34,7 @@ class _AddEditFillingstationDialogState
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PlatformFile? coverImage;
+  LatLng? _selectedLocation;
 
   @override
   void initState() {
@@ -43,6 +47,12 @@ class _AddEditFillingstationDialogState
       _pincodeController.text = widget.fillingstationDetails!['pincode'];
       _addressLineController.text =
           widget.fillingstationDetails!['address_line'];
+
+      if (widget.fillingstationDetails!['location'] != null) {
+        _selectedLocation = LatLng(
+            widget.fillingstationDetails!['location_latitude'],
+            widget.fillingstationDetails!['location_longitude']);
+      }
     }
     super.initState();
   }
@@ -165,6 +175,26 @@ class _AddEditFillingstationDialogState
                   validator: notEmptyValidator,
                   isLoading: state is FillingStationsLoadingState,
                 ),
+                CustomButton(
+                  label: _selectedLocation != null
+                      ? 'Change Location'
+                      : 'Select Location',
+                  iconData: Icons.location_on_sharp,
+                  onPressed: () async {
+                    LatLng? tempLocation = await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => CustomMap(
+                          selectedLocation: _selectedLocation,
+                        ),
+                      ),
+                    );
+
+                    if (tempLocation != null) {
+                      _selectedLocation = tempLocation;
+                      setState(() {});
+                    }
+                  },
+                ),
               ],
             ),
           )),
@@ -182,6 +212,11 @@ class _AddEditFillingstationDialogState
                 'place': _placeController.text,
                 'pincode': _pincodeController.text,
                 'address_line': _addressLineController.text,
+                'location': _selectedLocation != null
+                    ? 'POINT(${_selectedLocation?.longitude} ${_selectedLocation?.latitude})'
+                    : null,
+                'location_longitude': _selectedLocation?.longitude,
+                'location_latitude': _selectedLocation?.latitude,
               };
 
               if (coverImage != null) {
