@@ -367,12 +367,12 @@ class _FeedbackpageState extends State<Feedbackpage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Color(0xFF00A36C),
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                     ),
                     child: const Text(
                       'Send Response',
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(color: Colors.white, fontSize: 16.0),
                     ),
                   ),
                 ),
