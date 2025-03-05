@@ -75,3 +75,42 @@ class FillingStationCard extends StatelessWidget {
     );
   }
 }
+
+void showStationDetails(
+    BuildContext context, Map<dynamic, dynamic> stationDetails) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(stationDetails['name']),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('ID: ${stationDetails['id']}'),
+              Text('Created At: ${stationDetails['created_at']}'),
+              Text('User ID: ${stationDetails['user_id']}'),
+              Text('Phone: ${stationDetails['phone']}'),
+              Image.network(stationDetails['image_url']),
+              Text('State: ${stationDetails['state']}'),
+              Text('District: ${stationDetails['district']}'),
+              Text('Place: ${stationDetails['place']}'),
+              Text('Pincode: ${stationDetails['pincode']}'),
+              Text('Address: ${stationDetails['address_line']}'),
+              Text('Email: ${stationDetails['email']}'),
+              Text('Latitude: ${stationDetails['location_latitude']}'),
+              Text('Longitude: ${stationDetails['location_longitude']}'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Close'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}

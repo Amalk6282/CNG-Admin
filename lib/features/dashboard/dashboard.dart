@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ModernDashboard extends StatelessWidget {
   const ModernDashboard({super.key});
@@ -27,24 +28,40 @@ class ModernDashboard extends StatelessWidget {
               crossAxisCount: 4,
               crossAxisSpacing: 16,
               children: [
-                _buildStatCard(
-                  'Filling Stations',
-                  '40',
-                  Icons.local_gas_station,
-                ),
-                _buildStatCard(
-                  'Total Users',
-                  '3330',
-                  Icons.people,
-                ),
+                FutureBuilder(
+                    future: Supabase.instance.client
+                        .from('filling_stations')
+                        .select()
+                        .count(),
+                    builder: (context, snap) {
+                      int count = snap.data?.count ?? 0;
+                      return _buildStatCard(
+                        'Filling Stations',
+                        '$count',
+                        Icons.local_gas_station,
+                      );
+                    }),
+                FutureBuilder(
+                    future: Supabase.instance.client
+                        .from('customer_details')
+                        .select()
+                        .count(),
+                    builder: (context, snap) {
+                      int count = snap.data?.count ?? 0;
+                      return _buildStatCard(
+                        'Total Users',
+                        '$count',
+                        Icons.person,
+                      );
+                    }),
                 _buildStatCard(
                   'Current Reports',
-                  '20',
+                  '0',
                   Icons.description,
                 ),
                 _buildStatCard(
                   'Feedbacks',
-                  '270',
+                  '0',
                   Icons.feedback,
                 ),
               ],

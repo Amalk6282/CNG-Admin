@@ -124,7 +124,10 @@ class _FillingStaionState extends State<FillingStaion> {
                             (index) => FillingStationCard(
                               url: _fillingstations[index]['image_url'],
                               station: _fillingstations[index]['name'],
-                              onManage: () {},
+                              onManage: () {
+                                showStationDetails(
+                                    context, _fillingstations[index]);
+                              },
                               onEdit: () {
                                 showDialog(
                                     context: context,
